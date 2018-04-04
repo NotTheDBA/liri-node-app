@@ -4,53 +4,47 @@ require("dotenv").config();
 var request = require("request");
 var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
+var fs = require("fs");
 var keys = require("./keys.js");
 
 //#endregion
 
-//#region Read Arguments
-var command = process.argv[2];
-var option1 = process.argv[3];
-
-//#endregion
 
 //#region variables
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 //#endregion
 
-//#region Confirmations
-// prints `your key` to the console
-// console.log(process.env.TWITTER_CONSUMER_KEY)
 
-// prints `your spotify id` to the console
-// console.log(process.env.SPOTIFY_ID)
+//#region Read Arguments
+liriSwitch(process.argv[2], process.argv[3]);
 
 //#endregion
 
 //#region Command Switch
-switch (command) {
+function liriSwitch(command, option1) {
+    switch (command) {
 
-    case 'my-tweets':
-        getTweets();
-        break;
+        case 'my-tweets':
+            getTweets();
+            break;
 
-    case 'spotify-this-song':
-        // spotify(option1);
-        spotifyThis(option1)
-        break;
+        case 'spotify-this-song':
+            // spotify(option1);
+            spotifyThis(option1)
+            break;
 
+        case "movie-this":
+            movieThis(option1);
+            break;
 
-    case "movie-this":
-        movieThis(option1);
-        break;
+        case "do-what-it-says":
+            doThis(option1);
+            break;
 
-    case "do-what-it-says":
-        doThis(option1);
-        break;
-
-    default:
-        console.log("Sorry, I don't know how to '" + command + "'")
+        default:
+            console.log("Sorry, I don't know how to '" + command + "'...   Yet!")
+    }
 }
 //#endregion
 
@@ -100,7 +94,23 @@ function movieThis(option1) {
 
 //#region Do What It Says
 function doThis(option1) {
-    console.log("I don't know how to 'do-what-it-says'... yet!")
+
+
+    fs.readFile("random.txt", "utf8", function(err, data) {
+
+        if (err) {
+            return err;
+        }
+
+        var comOpts = data.split(",")
+        console.log("Selecting command...")
+        console.log("Running command...")
+        console.log("Command: " + comOpts[0] + "...")
+        console.log("Option: " + comOpts[1] + "...")
+
+        liriSwitch(comOpts[0], comOpts[1])
+
+    });
 
 }
 //#endregion
