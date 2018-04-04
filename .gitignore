@@ -1,11 +1,12 @@
-# MAC folder personalization
-.DS_Store
+# Instructions
+.instructions
 
-# Visual Studio Code customizations
+# Environment configurations
+.DS_Store
 .vscode
 
-# Instructions
-homework_instructions.md
+# dotenv environment variables file
+.env
 
 # Logs
 logs
@@ -62,7 +63,4 @@ typings/
 
 # Yarn Integrity file
 .yarn-integrity
-
-# dotenv environment variables file
-.env
 
