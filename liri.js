@@ -1,5 +1,4 @@
-//#region Requires
-// Read and set environment variables
+//#region Read and set environment variables
 require("dotenv").config();
 var request = require("request");
 var Twitter = require('twitter');
@@ -7,19 +6,12 @@ var Spotify = require('node-spotify-api');
 var fs = require("fs");
 var keys = require("./keys.js");
 
-//#endregion
-
-
-//#region variables
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 //#endregion
 
-
-//#region Read Arguments
+// Run the commands...
 liriSwitch(process.argv[2], process.argv[3]);
-
-//#endregion
 
 //#region Command Switch
 function liriSwitch(command, option1) {
