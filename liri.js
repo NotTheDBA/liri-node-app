@@ -1,5 +1,3 @@
-// import { keys } from "./keys.js";
-
 //#region Requires
 // Read and set environment variables
 require("dotenv").config();
@@ -70,8 +68,6 @@ function getTweets() {
 //#region Spotify This Song
 function spotifyThis(option1) {
 
-    console.log("I don't know how to 'spotify-this-song'... yet!")
-
     spotify
         .search({ type: 'track', query: option1 })
         .then(function(response) {
@@ -86,7 +82,18 @@ function spotifyThis(option1) {
 
 //#region Movie This
 function movieThis(option1) {
-    console.log("I don't know how to 'movie-this'... yet!")
+
+    var queryUrl = "http://www.omdbapi.com/?t=" + option1 + "&y=&plot=short&apikey=trilogy"
+
+    request(queryUrl, function(error, response, body) {
+        // If the request is successful
+        if (!error && response.statusCode === 200) {
+            // console.log(JSON.parse(body))
+            // Then log the Release Year for the movie
+            console.log("'" + option1 + "' was released in " + JSON.parse(body).Year + ".");
+
+        }
+    });
 
 }
 //#endregion
