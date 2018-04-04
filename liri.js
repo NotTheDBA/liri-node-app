@@ -1,11 +1,13 @@
-import { spotify } from "./keys.js";
+// import { keys } from "./keys.js";
 
 //#region Requires
 // Read and set environment variables
 require("dotenv").config();
 var request = require("request");
 var Twitter = require('twitter');
+var Spotify = require('node-spotify-api');
 var keys = require("./keys.js");
+
 //#endregion
 
 //#region Read Arguments
@@ -15,7 +17,7 @@ var option1 = process.argv[3];
 //#endregion
 
 //#region variables
-// var spotify = new Spotify(keys.spotify);
+var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 //#endregion
 
@@ -36,16 +38,17 @@ switch (command) {
         break;
 
     case 'spotify-this-song':
-        spotify(option1);
+        // spotify(option1);
+        spotifyThis(option1)
         break;
 
 
     case "movie-this":
-        movie(option1);
+        movieThis(option1);
         break;
 
     case "do-what-it-says":
-        doEeet(option1);
+        doThis(option1);
         break;
 
     default:
@@ -65,21 +68,31 @@ function getTweets() {
 //#endregion
 
 //#region Spotify This Song
-function spotify(option1) {
+function spotifyThis(option1) {
 
     console.log("I don't know how to 'spotify-this-song'... yet!")
+
+    spotify
+        .search({ type: 'track', query: option1 })
+        .then(function(response) {
+            console.log(response);
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+
 }
 //#endregion
 
 //#region Movie This
-function movie(option1) {
+function movieThis(option1) {
     console.log("I don't know how to 'movie-this'... yet!")
 
 }
 //#endregion
 
 //#region Do What It Says
-function doEeet(option1) {
+function doThis(option1) {
     console.log("I don't know how to 'do-what-it-says'... yet!")
 
 }
