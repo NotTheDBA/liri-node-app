@@ -45,7 +45,11 @@ function getTweets() {
     var params = { screen_name: 'NotTheDBABot' };
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (!error) {
-            console.log(tweets);
+
+            for (tweet in tweets) {
+                var tweet = "@" + tweets[tweet]["user"]["name"] + " tweets: '" + tweets[tweet]["text"]
+                console.log(tweet);
+            }
         }
     });
 }
