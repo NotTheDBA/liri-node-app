@@ -3,11 +3,12 @@ require("dotenv").config();
 var request = require("request");
 var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
+var fs = require('fs');
 var lineReader = require('line-reader');
 var keys = require("./keys.js");
 
 var spotify = new Spotify(keys.spotify);
-var client = new Twitter(keys.twitter);
+var tweeter = new Twitter(keys.twitter);
 //#endregion
 
 // Run the commands the user passed in...
@@ -15,6 +16,11 @@ liriSwitch(process.argv[2], process.argv[3]);
 
 //#region Command Switch
 function liriSwitch(command, option1) {
+    var log = command;
+    if (typeof option1 !== "undefined") {
+        log += " '" + option1 + "'";
+    }
+    logging(log);
     switch (command) {
 
         case '?':
@@ -62,7 +68,7 @@ function help() {
 //#region My Tweets
 function getTweets() {
     var params = { screen_name: 'NotTheDBABot' };
-    client.get('statuses/user_timeline', params, function(error, tweets, response) {
+    tweeter.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (!error) {
 
             console.log("@" + tweets[0]["user"]["name"] + " tweets:");
@@ -179,3 +185,20 @@ function doThis() {
 
 }
 //#endregion
+
+function logging(text) {
+
+    tweeter.post('statuses/update', { status: text }, function(error, tweet, response) {
+        if (error) {
+            console.log(error);
+        }
+    });
+
+    fs.appendFile("log.txt", Date(Date.now()) + ": " + text + "\n", function(err) {
+
+        if (err) {
+            return err;
+        }
+
+    })
+}
