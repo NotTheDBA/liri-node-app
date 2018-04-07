@@ -72,14 +72,41 @@ function getTweets() {
 
 //#region Spotify This Song
 function spotifyThis(option1) {
-    console.log(option1);
+    // console.log(option1);
     if (typeof option1 === "undefined") {
         option1 = "The Sign"
     }
-    option1 = option1.replace(" ", "+")
+    querySong = option1.replace(" ", "+")
     spotify.search({ type: 'track', query: option1 })
         .then(function(response) {
-            console.log(response["tracks"]);
+            // console.log(response["tracks"]);s
+            tracks = response["tracks"];
+
+            // console.log(tracks)
+
+            tracks.items.forEach(item => {
+                // console.log(item)
+                if (item.type === "track" && item.name === option1) {
+
+                    console.log()
+
+                    // * The song's name     
+                    console.log("Song: " + item.name)
+                        // * The album that the song is from
+                    console.log("Album: " + item.album.name)
+                        // * A preview link of the song from Spotify
+                    console.log("Preview: " + item.preview_url)
+
+                    // * Artist(s)
+                    // console.log(tracks.items[0].artists[0].name)
+                    console.log("Artist(s)");
+                    item.artists.forEach(artist => {
+                        console.log("   " + artist.name);
+                    })
+                }
+
+            })
+
         })
         .catch(function(err) {
             console.log(err);
