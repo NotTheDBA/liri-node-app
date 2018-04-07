@@ -3,7 +3,6 @@ require("dotenv").config();
 var request = require("request");
 var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
-// var fs = require("fs");
 var lineReader = require('line-reader');
 var keys = require("./keys.js");
 
@@ -158,16 +157,22 @@ function movieThis(option1) {
 
 //#region Do What It Says
 function doThis() {
+    var commands = [];
+    var comOpts = [];
+    console.log("Selecting command...")
 
     lineReader.eachLine('random.txt', function(line, last) {
-        var comOpts = line.split(",")
-        console.log("Selecting command...")
-        console.log("Running command...")
-        console.log("Command: " + comOpts[0] + "...")
-        console.log("Option: " + comOpts[1] + "...")
+        // do whatever you want with line...
+        var comOpts = line.split(",");
+        commands.push(comOpts);
 
-        liriSwitch(comOpts[0], comOpts[1])
-
+        if (last) {
+            var rand = Math.floor(Math.random() * commands.length);
+            console.log("Running command...")
+            console.log("Command: " + commands[rand][0])
+            console.log("Option: " + commands[rand][1])
+            liriSwitch(commands[rand][0], commands[rand][1])
+        }
     });
 
 }
