@@ -5,21 +5,25 @@
 LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI is a command line Node.js app that takes in parameters and gives you back data.
 
 Liri Bot can take in one of the following commands:
+<p>
 
   * `my-tweets`
-  * This will show your last 20 tweets and when they were created at in your terminal/bash window.
+  <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This will show your last 20 tweets and when they were created at in your terminal/bash window.</div>
+</p>
 
-  * `spotify-this-song` [song name]  - Pulls Spotify information for the song
-  * This will show the following information about the song in your terminal/bash window
+  * `spotify-this-song '<song name>'` (song name in quotes)
+  <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This will show the following information about the song in your terminal/bash window:</div>
+
    ```
      * Artist(s)
      * The song's name     
      * A preview link of the song from Spotify
      * The album that the song is from
    ```
+</div>
 
-  * `movie-this`
-  * This will output the following information to your terminal/bash window:
+  * `movie-this '<movie name>'` (movie name in quotes)
+  <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This will output the following information to your terminal/bash window:</div>
 
    ```
      * Title of the movie.
@@ -33,20 +37,22 @@ Liri Bot can take in one of the following commands:
    ```
 
   * `do-what-it-says`
-  * This will run a random LIRI command.
+  <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This will run a random LIRI command.</div>
 
- 
 ### Getting started
 
 Download or clone this repo to your machine.
 Run the following command in your shell:
-  npm install
+
+  `npm install`
 
 Run Liri from the shell, passing it a command, and a parameter if needed.
 
-  `node liri <comand> <'parameter'>`
+  `node liri <comand> '<parameter>'` (parameter - song name or movie name - in quotes)
 
 If you get stuck, you can view a help message:
+  ```
   `node liri ?`
   `node liri -h`
   `node liri help`
+  ```
