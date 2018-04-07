@@ -18,20 +18,7 @@ Liri Bot can take in one of the following commands:
        * The album that the song is from
      ```
 
-   * `movie-this` [movie name] - Pulls OMDB information for the movie
-   * This will output the following information to your terminal/bash window:
-     ```
-       * Title of the movie.
-       * Year the movie came out.
-       * IMDB Rating of the movie.
-       * Rotten Tomatoes Rating of the movie.
-       * Country where the movie was produced.
-       * Language of the movie.
-       * Plot of the movie.
-       * Actors in the movie.
-     ```
 
-    * `do-what-it-says` - Randomly runs one of the previous commands
 
 
 2. `node liri.js spotify-this-song '<song name here>'`

@@ -17,6 +17,12 @@ liriSwitch(process.argv[2], process.argv[3]);
 function liriSwitch(command, option1) {
     switch (command) {
 
+        case '?':
+        case 'h':
+        case 'help':
+            help();
+            break;
+
         case 'my-tweets':
             getTweets();
             break;
@@ -34,10 +40,21 @@ function liriSwitch(command, option1) {
             break;
 
         default:
+            console.log();
             console.log("Sorry, I don't know how to '" + command + "'...   Yet!")
+            help()
     }
 }
 //#endregion
+
+function help() {
+    console.log();
+    console.log("Try one of these commands:")
+    console.log("   my-tweets")
+    console.log("   spotify-this-song 'name of a song'")
+    console.log("   movie-this 'name of a movie'")
+    console.log("   do-what-it-says")
+}
 
 //#region My Tweets
 function getTweets() {
