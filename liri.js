@@ -170,7 +170,9 @@ function doThis() {
             var rand = Math.floor(Math.random() * commands.length);
             console.log("Running command...")
             console.log("Command: " + commands[rand][0])
-            console.log("Option: " + commands[rand][1])
+            if (typeof commands[rand][1] !== "undefined") {
+                console.log("Option: " + commands[rand][1])
+            }
             liriSwitch(commands[rand][0], commands[rand][1])
         }
     });
