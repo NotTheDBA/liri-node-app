@@ -22,7 +22,6 @@ function liriSwitch(command, option1) {
             break;
 
         case 'spotify-this-song':
-            // spotify(option1);
             spotifyThis(option1)
             break;
 
@@ -45,9 +44,8 @@ function getTweets() {
     var params = { screen_name: 'NotTheDBABot' };
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (!error) {
-
             for (tweet in tweets) {
-                var tweet = "@" + tweets[tweet]["user"]["name"] + " tweets: '" + tweets[tweet]["text"]
+                var tweet = "@" + tweets[tweet]["user"]["name"] + " tweets: '" + tweets[tweet]["text"] + " | " + tweets[tweet]["created_at"]
                 console.log(tweet);
             }
         }
@@ -57,11 +55,14 @@ function getTweets() {
 
 //#region Spotify This Song
 function spotifyThis(option1) {
-
-    spotify
-        .search({ type: 'track', query: option1 })
+    console.log(option1);
+    if (typeof option1 === "undefined") {
+        option1 = "The Sign"
+    }
+    option1 = option1.replace(" ", "+")
+    spotify.search({ type: 'track', query: option1 })
         .then(function(response) {
-            console.log(response);
+            console.log(response["tracks"]);
         })
         .catch(function(err) {
             console.log(err);
@@ -78,10 +79,29 @@ function movieThis(option1) {
     request(queryUrl, function(error, response, body) {
         // If the request is successful
         if (!error && response.statusCode === 200) {
-            // console.log(JSON.parse(body))
-            // Then log the Release Year for the movie
-            console.log("'" + option1 + "' was released in " + JSON.parse(body).Year + ".");
-
+            // console.log(JSON.parse(body));
+            console.log();
+            console.log("Movie");
+            console.log("=====");
+            movie = JSON.parse(body);
+            console.log(movie.Title);
+            console.log(movie.Year);
+            console.log(movie.Language);
+            console.log("Made in: " + movie.Country);
+            console.log("Ratings");
+            movie.Ratings.forEach(element => {
+                if (element.Source === 'Internet Movie Database') {
+                    console.log("   IMDB: " + element.Value);
+                }
+                if (element.Source === 'Rotten Tomatoes') {
+                    console.log("   Rotten Tomatoes: " + element.Value);
+                }
+            });
+            console.log("Starring");
+            movie.Actors.split(",").forEach(element => {
+                console.log("   " + element.trim());
+            })
+            console.log(movie.Plot);
         }
     });
 
