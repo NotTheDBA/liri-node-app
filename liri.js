@@ -65,7 +65,6 @@ function getTweets() {
             console.log("@" + tweets[0]["user"]["name"] + " tweets:");
 
             for (tweet in tweets) {
-                // var tweet = "@" + tweets[tweet]["user"]["name"] + " tweets: '" + tweets[tweet]["text"] + " | " + tweets[tweet]["created_at"]
                 var tweet = tweets[tweet]["created_at"] + ": '" + tweets[tweet]["text"]
                 console.log(tweet);
             }
@@ -76,25 +75,21 @@ function getTweets() {
 
 //#region Spotify This Song
 function spotifyThis(option1) {
-    // console.log(option1);
     if (typeof option1 === "undefined") {
         option1 = "The Sign"
     }
-    querySong = option1.replace(" ", "+")
-    spotify.search({ type: 'track', query: option1 })
+    querySong = option1.split(" ").join("+");
+
+    spotify.search({ type: 'track', query: querySong })
         .then(function(response) {
-            // console.log(response["tracks"]);s
             tracks = response["tracks"];
 
-            // console.log(tracks)
-
             tracks.items.forEach(item => {
-                // console.log(item)
-                if (item.type === "track" && item.name === option1) {
+
+                if (item.type === "track" && item.name.toLowerCase() === option1.toLowerCase()) {
 
                     console.log()
-
-                    // * The song's name     
+                        // * The song's name     
                     console.log("Song: " + item.name)
                         // * The album that the song is from
                     console.log("Album: " + item.album.name)
@@ -102,7 +97,6 @@ function spotifyThis(option1) {
                     console.log("Preview: " + item.preview_url)
 
                     // * Artist(s)
-                    // console.log(tracks.items[0].artists[0].name)
                     console.log("Artist(s)");
                     item.artists.forEach(artist => {
                         console.log("   " + artist.name);
@@ -127,7 +121,7 @@ function movieThis(option1) {
     request(queryUrl, function(error, response, body) {
         // If the request is successful
         if (!error && response.statusCode === 200) {
-            // console.log(JSON.parse(body));
+
             console.log();
             console.log("Movie");
             console.log("=====");
