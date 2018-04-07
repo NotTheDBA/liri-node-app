@@ -11,7 +11,7 @@ var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 //#endregion
 
-// Run the commands...
+// Run the commands the user passed in...
 liriSwitch(process.argv[2], process.argv[3]);
 
 //#region Command Switch
@@ -19,7 +19,7 @@ function liriSwitch(command, option1) {
     switch (command) {
 
         case '?':
-        case 'h':
+        case '-h':
         case 'help':
             help();
             break;
@@ -55,6 +55,9 @@ function help() {
     console.log("   spotify-this-song 'name of a song'")
     console.log("   movie-this 'name of a movie'")
     console.log("   do-what-it-says")
+    console.log();
+    console.log("To see this message again, type:")
+    console.log("   node liri help");
 }
 
 //#region My Tweets
@@ -85,21 +88,21 @@ function spotifyThis(option1) {
         .then(function(response) {
             tracks = response["tracks"];
 
-            tracks.items.forEach(item => {
+            tracks.items.forEach(song => {
 
-                if (item.type === "track" && item.name.toLowerCase() === option1.toLowerCase()) {
+                if (song.type === "track" && song.name.toLowerCase() === option1.toLowerCase()) {
 
-                    console.log()
-                        // * The song's name     
-                    console.log("Song: " + item.name)
-                        // * The album that the song is from
-                    console.log("Album: " + item.album.name)
-                        // * A preview link of the song from Spotify
-                    console.log("Preview: " + item.preview_url)
+                    console.log();
+                    //  The song's name     
+                    console.log("Song: " + song.name);
+                    //  The album that the song is from
+                    console.log("Album: " + song.album.name);
+                    //  A preview link of the song from Spotify
+                    console.log("Preview: " + song.preview_url);
 
-                    // * Artist(s)
+                    // Artist(s)
                     console.log("Artist(s)");
-                    item.artists.forEach(artist => {
+                    song.artists.forEach(artist => {
                         console.log("   " + artist.name);
                     })
                 }
