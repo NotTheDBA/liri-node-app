@@ -4,7 +4,9 @@
 
 LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI is a command line Node.js app that takes in parameters and gives you back data.
 
-Liri Bot can take in one of the following commands:
+LIRI will log and tweet all commands it is passed.
+
+LIRI Bot can take in one of the following commands:
 <p>
 
   * `my-tweets`
