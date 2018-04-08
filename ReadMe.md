@@ -51,7 +51,7 @@ Run the following command in your shell:
 
   `npm install`
 
-Run Liri from the shell, passing it a command, and a parameter if needed.
+Run LIRI from the shell, passing it a command, and a parameter if needed.
 
   `node liri <comand> '<parameter>'` (parameter - song name or movie name - in quotes)
 
