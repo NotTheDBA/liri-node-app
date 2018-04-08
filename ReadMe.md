@@ -44,6 +44,9 @@ LIRI Bot can take in one of the following commands:
 ### Getting started
 
 Download or clone this repo to your machine.
+
+Rename the file .env_example to .env, and edit the placeholder values with your Twitter and Spotify api keys.
+
 Run the following command in your shell:
 
   `npm install`
