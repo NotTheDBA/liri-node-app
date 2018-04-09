@@ -194,7 +194,7 @@ function logging(text) {
         }
     });
 
-    fs.appendFile("log.txt", Date(Date.now()) + ": " + text + "\n", function(err) {
+    fs.appendFile("liri.log", Date(Date.now()) + ": " + text + "\n", function(err) {
 
         if (err) {
             return err;
