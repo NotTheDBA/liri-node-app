@@ -18,7 +18,7 @@
     },
     "homepage": "https://github.com/NotTheDBA/liri-node-app#readme",
     "dependencies": {
-        "dotenv": "^5.0.1",
+        "dotenv": "^8.0.0",
         "line-reader": "^0.4.0",
         "node-spotify-api": "^1.1.1",
         "request": "^2.88.0",
